@@ -181,9 +181,15 @@ func (o *Output) dispatch(entry metrics.Sample) error {
 		}
 
 		trend.Record(ctx, entry.Value, otelMetric.WithAttributes(MapTagSet(entry.Tags)...))
+	case metrics.Rate:
+		rate, err := o.getOrCreateCounter(name)
+		if err != nil {
+			return err
+		}
+
+		rate.Add(ctx, entry.Value, otelMetric.WithAttributes(MapTagSet(entry.Tags)...))
 	default:
-		// TODO: add support for other metric types
-		o.logger.Debugf("Drop unsupported metric type: %s", entry.Metric.Name)
+		o.logger.Warnf("metric %q has unsupported metric type", entry.Metric.Name)
 	}
 
 	return nil
