@@ -1,5 +1,8 @@
 # xk6-output-opentelemetry
 
+> [!WARNING]
+> The `xk6-output-opentelemetry` extension [has been merged](https://github.com/grafana/k6/pull/4562) to the [main k6 repository](https://github.com/grafana/k6). Please contribute and [open issues there](https://github.com/grafana/k6/issues). This repository is no longer maintained and it will be soon archived.
+
 A work in progress k6 extension to output real-time test metrics in [OpenTelemetry metrics format](https://opentelemetry.io/docs/specs/otel/metrics/).
 
 > [!WARNING]  
